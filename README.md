@@ -1,2 +1,2 @@
 # STD-Program
-This repository is project in Computer Programming, IT KMITL.
+This repository is a project in Computer Programming, IT KMITL.
