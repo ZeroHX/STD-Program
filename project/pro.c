@@ -1,8 +1,28 @@
+/*
+___________________________________________________________________________________
+
+Project-name: STD-Program
+
+Member: ZeroHX
+        AnTznimalz
+        Thawornch
+        JJINNYNY
+
+This is a project in Computer Programming,
+Faculty of Information Technology King Mongkut's Institute of Technology Ladkrabang
+(IT KMITL).
+___________________________________________________________________________________
+
+*/
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <conio.h>
-
+/*
+Structure of all Record profile
+[ NOTE: THERE IS A SAMPLE TEMPLATE FOR TESTING!! ]
+*/
 struct Record{
     char name[20];
     char last[20];
@@ -10,10 +30,12 @@ struct Record{
     char pass[20];
 }rec1;
 
+//Function Declare here!!
 void login();
 void regis();
 void mainScreen();
 
+//Simple main, for goto mainScreen
 int main(){
     system("cls");
     printf("====================================================\n\n");
@@ -25,17 +47,18 @@ int main(){
     system("cls");
     mainScreen();
 }
-
+//Login Screen
 void login(){
-    char log_id[20], log_pass[20];
-    int status = 0;
-    system("cls");
+    char log_id[20], log_pass[20];  //tmp User & Pass input
+    int status = 0;     //check User & Pass state (0/1)
+    system("cls");      //For Clear screen
     printf("Login To STD-Program!!\n\n");
     printf("Username: ");
     scanf("%s", log_id);
     printf("\nPassword: ");
     scanf("%s", log_pass);
 
+    /* Method to read .txt file (googling plz)*/
     FILE *fp;
     fp = fopen("record.txt","rb");
 
@@ -60,9 +83,10 @@ void login(){
 
     }
 }
-
+//Register Screen
 void regis(){
     int yn;
+    /* Method to write(append) .txt file (googling plz)*/
     FILE *fp;
     fp = fopen("record.txt","ab+");
     if(fp == NULL) printf("Error! Check your file! (record.txt)");
@@ -111,7 +135,7 @@ void regis(){
     }
 }
 
-
+//Main Screen (Login & Register)
 void mainScreen(){
     int choice;
     printf("====================================================\n\n");
