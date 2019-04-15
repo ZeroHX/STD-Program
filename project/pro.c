@@ -60,7 +60,7 @@ void login(){
 
     /* Method to read .txt file (googling plz)*/
     FILE *fp;
-    fp = fopen("record.txt","rb");
+    fp = fopen("record.txt","rb"); //rb >>> Open for reading in binary mode
 
     while(fread(&rec1,sizeof(rec1),1,fp) == 1){
         if(strcmp(log_id,rec1.user) == 0 && strcmp(log_pass,rec1.pass) == 0){
