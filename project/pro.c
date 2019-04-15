@@ -127,7 +127,7 @@ void regis(){
         int choice;
         printf("Career      1: Teacher\n");
         printf("            2: Student\n\n");
-        printf("Choose your choice![num]>>>");
+        printf("Choose your choice![num]: ");
         scanf("%d",&choice);
         switch(choice){
             case 1:
@@ -163,7 +163,7 @@ void regis(){
             }
         }
 
-        printf("------------------------------------------\n");
+        printf("\n\n------------------------------------------\n");
         printf("Name: %s %s\n",rec1.name,rec1.last);
         printf("Career: %s\n", rec1.career);
         printf("Username: %s\n",rec1.user);
