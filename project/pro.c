@@ -29,16 +29,19 @@ struct Record{
     char user[20];      // Username
     char pass[20];      // Password
     char career[20];    // [ Student or Teacher ]
+    float score[5];     // Score Array [English, Mathematics, Science, Computer, History]
 }rec1;
 
 //Function Declare here!!
 void login();
 void regis();
 void mainScreen();
+void teacher();
+void searchID();
 
 //Simple main, for goto mainScreen
 int main(){
-    system("cls");
+    //system("cls");
     printf("====================================================\n\n");
     printf("Welcome to STD-Program\n");
     printf("This project is part of subject Computer Programming\n\n");
@@ -76,7 +79,7 @@ void login(){
         }
         else{       //Replace password with star(*)
             log_pass[i++] = ch;
-            printf("* \b");
+            printf("*");
         }
     }
 
@@ -95,10 +98,17 @@ void login(){
         printf("Login Successful!!\n\n");
         printf("Welcome back %s !!\n\n", rec1.name);
         printf("You are %s !!\n\n", rec1.career);
+        if(strcmp(rec1.career, "Teacher") == 0){
+            teacher();
+        }
+        else if(strcmp(rec1.career, "Student") == 0){
+            //student();
+        }
         fclose(fp);
     }
     else{
-        printf("Wrong Username/Password\n");
+        fclose(fp);
+        printf("\n\nWrong Username/Password\n");
         printf("Please check your account again or register first!\n\n");
         printf("Press any key to continue!");
         getch();
@@ -193,9 +203,85 @@ void regis(){
     }
 }
 
+/* -------------- This is Teacher-Part --------------- */
+void teacher(){
+    int choice;
+    printf("------------------------------\n");
+    printf("1: Search student by ID\n");
+    printf("2: View all student\n");
+    printf("3: Exit\n\n");
+    printf("Choose your choice: ");
+    scanf("%d",&choice);
+
+    switch(choice){
+        case 1:
+            //printf("searchID(); is COMING SOON!!\n");
+            searchID();
+            break;
+        case 2:
+            //viewAll();
+            printf("viewAll(); is COMING SOON!!\n");
+            break;
+        case 3:
+            mainScreen();
+            break;
+    }
+}
+
+void searchID(){
+    char search_id[20];
+    system("cls");
+    printf("Please enter Student ID: ");
+    scanf("%s", search_id);
+
+    int status = 0;
+    FILE *fp;
+    fp = fopen("record.txt","rb"); //rb >>> Open for reading in binary mode
+    while(fread(&rec1,sizeof(rec1),1,fp) == 1){
+        if(strcmp(search_id,rec1.user) == 0){
+            status = 1;
+            break;
+        }
+    }
+    if(status == 1){
+        system("cls");
+        printf("Student Profile-------------------------------------------\n");
+        printf("    Name: %s  %s\n",rec1.name, rec1.last);
+        printf("    GPA: English     : %f\n", rec1.score[0]);
+        printf("         Mathematics : %f\n", rec1.score[1]);
+        printf("         Science     : %f\n", rec1.score[2]);
+        printf("         Computer    : %f\n", rec1.score[3]);
+        printf("         History     : %f\n", rec1.score[4]);
+        printf("----------------------------------------------------------\n\n\n");
+
+        int choice;
+        printf("1: Edit score\n");
+        printf("2: Exit\n");
+        switch(choice){
+            case 1:
+                //editScore();
+                printf("editScore(); is COMING SOON!!\n");
+                break;
+            case 2:
+                teacher();
+                break;
+        }
+        fclose(fp);
+    }
+    else{
+        fclose(fp);
+        printf("\n\nStudent ID not found!!\n");
+        printf("Press any key to continue!");
+        getch();
+        system("cls");
+        teacher();
+    }
+}
+
 //Main Screen (Login & Register)
 void mainScreen(){
     int choice;
+    system("cls");
     printf("====================================================\n\n");
     printf("Welcome to STD-Program\n");
     printf("This project is part of subject Computer Programming\n\n");
