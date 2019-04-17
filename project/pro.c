@@ -41,7 +41,7 @@ void searchID();
 
 //Simple main, for goto mainScreen
 int main(){
-    //system("cls");
+    system("cls");
     printf("====================================================\n\n");
     printf("Welcome to STD-Program\n");
     printf("This project is part of subject Computer Programming\n\n");
@@ -123,6 +123,7 @@ void regis(){
     /* Method to write(append) .txt file (googling plz)*/
     FILE *fp;
     fp = fopen("record.txt","ab+");
+
     if(fp == NULL) printf("Error! Check your file! (record.txt)");
     else{
         system("cls");
@@ -236,7 +237,8 @@ void searchID(){
 
     int status = 0;
     FILE *fp;
-    fp = fopen("record.txt","rb"); //rb >>> Open for reading in binary mode
+    fp = fopen("record.txt","rb+"); //rb >>> Open for reading in binary mode
+
     while(fread(&rec1,sizeof(rec1),1,fp) == 1){
         if(strcmp(search_id,rec1.user) == 0){
             status = 1;
@@ -247,26 +249,60 @@ void searchID(){
         system("cls");
         printf("Student Profile-------------------------------------------\n");
         printf("    Name: %s  %s\n",rec1.name, rec1.last);
-        printf("    GPA: English     : %f\n", rec1.score[0]);
-        printf("         Mathematics : %f\n", rec1.score[1]);
-        printf("         Science     : %f\n", rec1.score[2]);
-        printf("         Computer    : %f\n", rec1.score[3]);
-        printf("         History     : %f\n", rec1.score[4]);
+        printf("    GPA: English     : %.2f\n", rec1.score[0]);
+        printf("         Mathematics : %.2f\n", rec1.score[1]);
+        printf("         Science     : %.2f\n", rec1.score[2]);
+        printf("         Computer    : %.2f\n", rec1.score[3]);
+        printf("         History     : %.2f\n", rec1.score[4]);
         printf("----------------------------------------------------------\n\n\n");
 
         int choice;
         printf("1: Edit score\n");
         printf("2: Exit\n");
+        printf("Choose your choice: ");
+        scanf("%d",&choice);
+
+        system("cls");
+        float eng, math, sci, com, his;
         switch(choice){
             case 1:
-                //editScore();
-                printf("editScore(); is COMING SOON!!\n");
+                // editScore();
+                // printf("editScore(); is COMING SOON!!\n");
+                printf("Enter %s score\n", rec1.name);
+
+                printf("English: ");
+                scanf("%f",&rec1.score[0]);
+
+                printf("Mathematics: ");
+                scanf("%f",&rec1.score[1]);
+
+                printf("Science: ");
+                scanf("%f",&rec1.score[2]);
+
+                printf("Computer: ");
+                scanf("%f",&rec1.score[3]);
+
+                printf("History: ");
+                scanf("%f",&rec1.score[4]);
+
+                // rec1.score[0] = eng;
+                // rec1.score[1] = math;
+                // rec1.score[2] = sci;
+                // rec1.score[3] = com;
+                // rec1.score[4] = his;
+
+                printf("Enter %s Score Successful!!", rec1.name);
+                fwrite(&rec1, sizeof(rec1), 1, fp);
+                fclose(fp);
+                teacher();
                 break;
+
+
             case 2:
+                fclose(fp);
                 teacher();
                 break;
         }
-        fclose(fp);
     }
     else{
         fclose(fp);
@@ -277,6 +313,11 @@ void searchID(){
         teacher();
     }
 }
+
+// //Function Edit score
+// void editScore(){
+
+// }
 
 //Main Screen (Login & Register)
 void mainScreen(){
