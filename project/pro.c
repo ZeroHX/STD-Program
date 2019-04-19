@@ -39,6 +39,7 @@ void regis();
 void mainScreen();
 void teacher();
 void searchID();
+void confirm();
 
 //Simple main, for goto mainScreen
 int main(){
@@ -200,7 +201,9 @@ void regis(){
         // system("cls");
     }
     else{
-        printf("\nPlease Confirm Again\n");
+        printf("\nConfirm Failed\n");
+        system("cls");
+        confirm();
     }
 
         printf("\n\n------------------------------------------\n");
@@ -230,6 +233,61 @@ void regis(){
                 regis();
                 break;
         }
+    }
+}
+
+void confirm(){
+    printf("Please Enter Password Again\n");
+    printf("Password: ");
+        int i = 0;
+        while(1){
+            char ch = getch();  //Get input from Keyboard (KEYCODE)
+            if(ch == 13 || ch == 9){    //13 is ENTER & 9 is TAB
+                rec1.pass[i] = '\0';    //Set the end point of String
+                break;
+            }
+            else if(ch == 8){   //8 is BackSpace (for del)
+                if(i>0){
+                    i--;
+                    printf("\b \b");    //NOTE: Keep space with \b
+                }
+            }
+            else{       //Replace password with star(*)
+                rec1.pass[i++] = ch;
+                printf("* \b");
+            }
+        }
+        //Confirm Password
+        printf("\nPlease Confirm Password: ");
+        int j = 0;
+        while(1){
+            char hc = getch();  //Get input from Keyboard (KEYCODE)
+            if(hc == 13 || hc == 9){    //13 is ENTER & 9 is TAB
+                rec1.con[j] = '\0';    //Set the end point of String
+                break;
+            }
+            else if(hc == 8){   //8 is BackSpace (for del)
+                if(j>0){
+                    j--;
+                    printf("\b \b");    //NOTE: Keep space with \b
+                }
+            }
+            else{       //Replace password with star(*)
+                rec1.con[j++] = hc;
+                printf("* \b");
+            }
+        }
+    //Check Password & Confirm
+    if(strcmp(rec1.pass ,rec1.con) == 0){
+        printf("\nConfirm Password Correct\n");
+        // system("cls");
+    }
+    else{
+        printf("\nTry Again\n");
+        strcpy(rec1.pass, "");
+        strcpy(rec1.con, "");
+        system("cls");
+        confirm();
     }
 }
 
@@ -269,7 +327,7 @@ void searchID(){
     fp = fopen("record.txt","rb+"); //rb >>> Open for reading in binary mode
 
     while(fread(&rec1,sizeof(rec1),1,fp) == 1){
-        if(strcmp(search_id,rec1.user) == 0){
+        if(strcmp(search_id,rec1.user) == 0 && strcmp(rec1.career,"Student")==0){
             status = 1;
             break;
         }
