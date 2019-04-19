@@ -28,6 +28,7 @@ struct Record{
     char last[20];      // Lastname
     char user[20];      // Username
     char pass[20];      // Password
+    char con[20];       //Confirm Password
     char career[20];    // [ Student or Teacher ]
     float score[5];     // Score Array [English, Mathematics, Science, Computer, History]
 }rec1;
@@ -173,6 +174,34 @@ void regis(){
                 printf("* \b");
             }
         }
+        //Confirm Password
+        printf("\nPlease Confirm Password: ");
+        int j = 0;
+        while(1){
+            char hc = getch();  //Get input from Keyboard (KEYCODE)
+            if(hc == 13 || hc == 9){    //13 is ENTER & 9 is TAB
+                rec1.con[j] = '\0';    //Set the end point of String
+                break;
+            }
+            else if(hc == 8){   //8 is BackSpace (for del)
+                if(j>0){
+                    j--;
+                    printf("\b \b");    //NOTE: Keep space with \b
+                }
+            }
+            else{       //Replace password with star(*)
+                rec1.con[j++] = hc;
+                printf("* \b");
+            }
+        }
+    //Check Password & Confirm
+    if(strcmp(rec1.pass ,rec1.con) == 0){
+        printf("\nConfirm Password Correct\n");
+        // system("cls");
+    }
+    else{
+        printf("\nPlease Confirm Again\n");
+    }
 
         printf("\n\n------------------------------------------\n");
         printf("Name: %s %s\n",rec1.name,rec1.last);
