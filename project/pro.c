@@ -153,7 +153,28 @@ void regis(){
 
         /* USERNAME */
         printf("Username: ");
-        scanf("%s",&rec1.user);
+        // --------------------------------------------------------------------------------------------
+        char namedes[20];
+        scanf("%s",&namedes);
+    int status = 0;
+    FILE *fp;
+    fp = fopen("record.txt","rb+"); //rb >>> Open for reading in binary mode
+
+    while(fread(&rec1,sizeof(rec1),1,fp) == 1){
+        if(strcmp(namedes,rec1.user) == 0){
+            status = 1;
+            printf("This user name can't use.\n");
+            break;
+        }
+    }
+    if(status == 1){
+        printf("Username: ");
+        scanf("%s",&namedes);
+    }
+
+
+// ------------------------------------------------------------------------------------------------
+
 
         /* PASSWORD */
         printf("Password: ");
