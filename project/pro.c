@@ -135,7 +135,8 @@ void regis(){
         scanf("%s",&rec1.name);
         printf("LastName: ");
         scanf("%s",&rec1.last);
-
+        printf("%s", rec1.name);
+        printf("%s", rec1.last); 
         /* CAREER [teacher or student] */
         int choice;
         printf("Career      1: Teacher\n");
@@ -150,11 +151,12 @@ void regis(){
                 strcpy(rec1.career, "Student");
                 break;
         }
-
+        fwrite(&rec1, sizeof(rec1), 1, fp);
+        fclose(fp);
         /* USERNAME */
-        printf("Username: ");
         // --------------------------------------------------------------------------------------------
         char namedes[20];
+        printf("Username: ");
         scanf("%s",&namedes);
     int status = 0;
     FILE *fp;
@@ -166,13 +168,20 @@ void regis(){
             printf("This user name can't use.\n");
             break;
         }
+        else{
+            printf("This username can use :)))\n");
+            fwrite(&rec1, sizeof(rec1), 1, fp);
+            break;
+        }
     }
     if(status == 1){
         printf("Username: ");
         scanf("%s",&namedes);
+        fwrite(&rec1, sizeof(rec1), 1, fp);
     }
-
-
+    printf("%s", rec1.name);
+    printf("%s", rec1.last); 
+// fclose(fp);
 // ------------------------------------------------------------------------------------------------
 
 
