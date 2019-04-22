@@ -383,21 +383,12 @@ void searchID()
     {
         system("cls");
         printf("Student Profile-------------------------------------------\n");
-<<<<<<< HEAD
-        printf("    Name: %s  %s\n",rec1.name, rec1.last);
-        printf("    GPA: English     : %f\n", rec1.score[0]);
-        printf("         Mathematics : %f\n", rec1.score[1]);
-        printf("         Science     : %f\n", rec1.score[2]);
-        printf("         Computer    : %f\n", rec1.score[3]);
-        printf("         History     : %f\n", rec1.score[4]);
-=======
         printf("    Name: %s  %s\n", rec1.name, rec1.last);
         printf("    GPA: English     : %.2f\n", rec1.score[0]);
         printf("         Mathematics : %.2f\n", rec1.score[1]);
         printf("         Science     : %.2f\n", rec1.score[2]);
         printf("         Computer    : %.2f\n", rec1.score[3]);
         printf("         History     : %.2f\n", rec1.score[4]);
->>>>>>> 6ad01a29f8373ec11b5bc6ffcca5e4c5c8477bc4
         printf("----------------------------------------------------------\n\n\n");
         int choice;
         printf("1: Edit score\n");
@@ -406,46 +397,6 @@ void searchID()
         scanf("%d", &choice);
         system("cls");
         float eng, math, sci, com, his;
-<<<<<<< HEAD
-        switch(choice){
-            case 1:
-                // editScore();
-                // printf("editScore(); is COMING SOON!!\n");
-                printf("Enter %s score\n", rec1.name);
-
-                printf("English: ");
-                scanf("%f",&rec1.score[0]);
-
-                printf("Mathematics: ");
-                scanf("%f",&rec1.score[1]);
-
-                printf("Science: ");
-                scanf("%f",&rec1.score[2]);
-
-                printf("Computer: ");
-                scanf("%f",&rec1.score[3]);
-
-                printf("History: ");
-                scanf("%f",&rec1.score[4]);
-
-                // rec1.score[0] = eng;
-                // rec1.score[1] = math;
-                // rec1.score[2] = sci;
-                // rec1.score[3] = com;
-                // rec1.score[4] = his;
-
-                printf("Enter %s Score Successful!!", rec1.name);
-                fread(&rec1, sizeof(rec1), 1, fp);
-                fclose(fp);
-                teacher();
-                break;
-
-
-            case 2:
-                fclose(fp);
-                teacher();
-                break;
-=======
         switch (choice)
         {
         case 1:
@@ -476,7 +427,6 @@ void searchID()
             fclose(fp);
             teacher();
             break;
->>>>>>> 6ad01a29f8373ec11b5bc6ffcca5e4c5c8477bc4
         }
     }
     else
