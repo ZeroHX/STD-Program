@@ -1,0 +1,4 @@
+Muna Luvmoo 123 456 456 Teacher 0 0 0 0 0
+Guitar Riz 001 1234 1234 Student 50 30 30 10 50
+Antz Wowzaa 002 1234 1234 Student 100 100 100 100 100
+Nunja Rom9 003 1234 1234 Student 0 0 0 0 0
