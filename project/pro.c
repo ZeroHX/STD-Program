@@ -450,7 +450,7 @@ void viewAll(){ //Yeah Now, you can see all the students score
     fp = fopen("record.txt", "r");
     while(fscanf(fp,"%s %s %s %s %s %f %f %f %f %f",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.career,&rec1.eng, &rec1.math, &rec1.sci, &rec1.com, &rec1.his) != EOF){ //It will scan in record.txt until it can not find the data.
         if(!strcmp(rec1.career, "Student")){ //check logic is 1 print the score of that student
-            printf("Name: %s %s\tID: %s\n>>> Score\n  English: %.2f\n  Mathematics: %.2f\n  Science: %.2f\n  Computer: %.2f\n  History: %.2f\n",rec1.name,rec1.last,rec1.user,rec1.eng, rec1.math, rec1.sci, rec1.com, rec1.his);
+            printf("ID: %s   Name: %s %s\nScore:\n \tEnglish: %.2f\n \tMathematics: %.2f\n \tScience: %.2f\n \tComputer: %.2f\n \tHistory: %.2f\n",rec1.user,rec1.name,rec1.last,rec1.eng, rec1.math, rec1.sci, rec1.com, rec1.his);
             printf("------------------------------------------------------------------------\n");
         }
     }
