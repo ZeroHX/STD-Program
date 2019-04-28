@@ -26,7 +26,12 @@ struct Record{
     char pass[20];      // Password
     char con[20];       //Confirm Password
     char career[20];    // [ Student or Teacher ]
-    float score[5];     // Score Array [English, Mathematics, Science, Computer, History]
+    //float score[5];     // Score Array [English, Mathematics, Science, Computer, History]
+    int eng;
+    int math;
+    int sci;
+    int com;
+    int his;
     char test[10];
 }rec1, tmp;
 
@@ -37,10 +42,11 @@ void mainScreen();
 void teacher();
 void searchID();
 void confirm();
+void viewAll();
 
 //Simple main, for goto mainScreen
 int main(){
-    // system("cls");
+    system("cls");
     printf("====================================================\n\n");
     printf("Welcome to STD-Program\n");
     printf("This project is part of subject Computer Programming\n\n");
@@ -84,10 +90,10 @@ void login(){
 
     /* Method to read .txt file (googling plz)*/
     FILE *fp;
-    fp = fopen("record.txt","rb"); //rb >>> Open for reading in binary mode
-
-    while(fread(&rec1,sizeof(rec1),1,fp) == 1){
-        if(strcmp(log_id,rec1.user) == 0 && strcmp(log_pass,rec1.pass) == 0){
+    fp = fopen("record.txt","r"); //rb >>> Open for reading in binary mode
+    while(fscanf(fp,"%s %s %s %s %s %s %d %d %d %d %d",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.con,rec1.career,&rec1.eng, &rec1.math, &rec1.sci, &rec1.com, &rec1.his) != EOF){
+        if(!strcmp(log_id, rec1.user) && !strcmp(log_pass, rec1.pass)){
+            printf("\nLogin Successful!!");
             status = 1;
             break;
         }
@@ -195,8 +201,8 @@ void regis(){
     //Check Password & Confirm
     if(strcmp(rec1.pass ,rec1.con) == 0){
         printf("\nConfirm Password Correct\n");
-        strcpy(rec1.test, "9");
-        // system("cls");
+        // strcpy(rec1.test, "9");
+
     }
     else{
         printf("\nConfirm Failed\n");
@@ -213,15 +219,18 @@ void regis(){
             printf("*");
         }
         printf("\n");
-        printf("test: %s", rec1.test);
         printf("------------------------------------------\n");
         printf("Do you want to create this account? (1: Yes/2: No): ");
         scanf("%d",& yn);
         switch(yn){
             case 1:
                 system("cls");
-                // rec1.test = 1;
-                fwrite(&rec1, sizeof(rec1), 1, fp);
+                rec1.eng = 0;
+                rec1.math = 0;
+                rec1.sci = 0;
+                rec1.com = 0;
+                rec1.his = 0;
+                fprintf(fp,"%s %s %s %s %s %s %d %d %d %d %d\n",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.con,rec1.career,rec1.eng, rec1.math, rec1.sci, rec1.com, rec1.his);
                 fclose(fp);
                 printf("Create Account Succesful!!\n\n\n");
                 printf("Press any key to Main-Menu\n");
@@ -303,12 +312,11 @@ void teacher(){
 
     switch(choice){
         case 1:
-            //printf("searchID(); is COMING SOON!!\n");
             searchID();
             break;
         case 2:
-            //viewAll();
-            printf("viewAll(); is COMING SOON!!\n");
+            viewAll(); //viewAll is now available eiei from Jakkawan
+            // printf("viewAll(); is COMING SOON!!\n");
             break;
         case 3:
             mainScreen();
@@ -326,8 +334,8 @@ void searchID(){
     FILE *fp, *fp1;
     fp = fopen("record.txt","r"); //rb >>> Open for reading in binary mode
 
-    while(fread(&rec1,sizeof(rec1),1,fp) == 1){
-        if(strcmp(search_id,rec1.user) == 0 && strcmp(rec1.career,"Student")==0){
+    while(fscanf(fp,"%s %s %s %s %s %s %d %d %d %d %d",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.con,rec1.career,&rec1.eng, &rec1.math, &rec1.sci, &rec1.com, &rec1.his) != EOF){
+        if(!strcmp(search_id, rec1.user) && !strcmp(rec1.career, "Student")){
             status = 1;
             break;
         }
@@ -336,14 +344,13 @@ void searchID(){
         system("cls");
         printf("Student Profile-------------------------------------------\n");
         printf("    Name: %s  %s\n",rec1.name, rec1.last);
-        // printf("    GPA: English     : %.2f\n", rec1.test);
-        printf("    GPA: English     : %s\n", rec1.test);
-        printf("         Mathematics : %.2f\n", rec1.score[1]);
-        printf("         Science     : %.2f\n", rec1.score[2]);
-        printf("         Computer    : %.2f\n", rec1.score[3]);
-        printf("         History     : %.2f\n", rec1.score[4]);
+        printf("    GPA: English     : %d\n", rec1.eng);
+        printf("         Mathematics : %d\n", rec1.math);
+        printf("         Science     : %d\n", rec1.sci);
+        printf("         Computer    : %d\n", rec1.com);
+        printf("         History     : %d\n", rec1.his);
         printf("----------------------------------------------------------\n\n\n");
-
+        fclose(fp);
         int choice;
         printf("1: Edit score\n");
         printf("2: Exit\n");
@@ -351,14 +358,30 @@ void searchID(){
         scanf("%d",&choice);
 
         system("cls");
-        float eng, math, sci, com, his;
         char score[10];
         switch(choice){
             case 1:
+                fp = fopen("record.txt", "r");
                 fp1 = fopen("temp.txt", "a");
-                printf("Enter Score: ");
-                scanf("%s", tmp.test);
-                fprintf(fp1,"%s %s %s %s %s %s %s",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.con,rec1.career,tmp.test);
+                while(fscanf(fp,"%s %s %s %s %s %s %d %d %d %d %d",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.con,rec1.career,&rec1.eng, &rec1.math, &rec1.sci, &rec1.com, &rec1.his) != EOF){
+                    if(!strcmp(search_id, rec1.user)){ //if 1
+                        printf("Enter Score\n");
+                        printf("English: ");
+                        scanf("%d", &tmp.eng);
+                        printf("Mathematics: ");
+                        scanf("%d", &tmp.math);
+                        printf("Science: ");
+                        scanf("%d", &tmp.sci);
+                        printf("Computer: ");
+                        scanf("%d", &tmp.com);
+                        printf("History: ");
+                        scanf("%d", &tmp.his);
+                        fprintf(fp1,"%s %s %s %s %s %s %d %d %d %d %d\n",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.con,rec1.career,tmp.eng, tmp.math, tmp.sci, tmp.com, tmp.his);
+                    }                                                                                                                  //tmp because we can found id :)
+                    else{
+                        fprintf(fp1,"%s %s %s %s %s %s %d %d %d %d %d\n",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.con,rec1.career,rec1.eng, rec1.math, rec1.sci, rec1.com, rec1.his);
+                    }                                                                                                                  //this case means we can't find the id :'(
+                }
                 fclose(fp);
                 fclose(fp1);
 
@@ -367,28 +390,17 @@ void searchID(){
 
                 fp = fopen("record.txt", "a");
                 fp1 = fopen("temp.txt", "r");
-                while(fscanf(fp1,"%s %s %s %s %s %s %s",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.con,rec1.career,rec1.test) != EOF){
-                    fprintf(fp,"%s %s %s %s %s %s %s",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.con,rec1.career,tmp.test);
+                while(fscanf(fp1,"%s %s %s %s %s %s %d %d %d %d %d",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.con,rec1.career,&rec1.eng, &rec1.math, &rec1.sci, &rec1.com, &rec1.his) != EOF){
+                    fprintf(fp,"%s %s %s %s %s %s %d %d %d %d %d\n",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.con,rec1.career,rec1.eng, rec1.math, rec1.sci, rec1.com, rec1.his);
                 }
                 fclose(fp);
                 fclose(fp1);
 
-                // fp1 = fopen("temp.txt", "w");
-                // fclose(fp1);
+                fp1 = fopen("temp.txt", "w");
+                fclose(fp1);
 
                 teacher();
                 break;
-        /*
-        char name[20];      // Name
-        char last[20];      // Lastname
-        char user[20];      // Username
-        char pass[20];      // Password
-        char con[20];       //Confirm Password
-        char career[20];    // [ Student or Teacher ]
-        float score[5];     // Score Array [English, Mathematics, Science, Computer, History]
-        char test[10];
-        */
-
             case 2:
                 fclose(fp);
                 teacher();
@@ -405,10 +417,22 @@ void searchID(){
     }
 }
 
-// Function Edit score
-// void editScore(){
-
-// }
+//viewAll function
+void viewAll(){ //Yeah Now, you can see all the students score
+    FILE *fp;
+    fp = fopen("record.txt", "r");
+    while(fscanf(fp,"%s %s %s %s %s %s %d %d %d %d %d",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.con,rec1.career,&rec1.eng, &rec1.math, &rec1.sci, &rec1.com, &rec1.his) != EOF){ //It will scan in record.txt until it can not find the data.
+        if(!strcmp(rec1.career, "Student")){ //check logic is 1 print the score of that student
+            printf("Name: %s %s\n Score\n  English: %d\n  Mathematics: %d\n  Science: %d\n  Computer: %d\n  History: %d\n",rec1.name,rec1.last,rec1.eng, rec1.math, rec1.sci, rec1.com, rec1.his);
+            printf("------------------------------------------------------------------------\n");
+        }
+    }
+    fclose(fp);
+    printf("\n\n                        Press any key to continue!");
+    getch();
+    system("cls");
+    teacher();
+}
 
 //Main Screen (Login & Register)
 void mainScreen(){
