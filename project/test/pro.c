@@ -315,7 +315,7 @@ void teacher(){
             searchID();
             break;
         case 2:
-            viewAll();
+            viewAll(); //viewAll is now available eiei from Jakkawan
             // printf("viewAll(); is COMING SOON!!\n");
             break;
         case 3:
@@ -364,7 +364,7 @@ void searchID(){
                 fp = fopen("record.txt", "r");
                 fp1 = fopen("temp.txt", "a");
                 while(fscanf(fp,"%s %s %s %s %s %s %d %d %d %d %d",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.con,rec1.career,&rec1.eng, &rec1.math, &rec1.sci, &rec1.com, &rec1.his) != EOF){
-                    if(!strcmp(search_id, rec1.user)){
+                    if(!strcmp(search_id, rec1.user)){ //if 1
                         printf("Enter Score\n");
                         printf("English: ");
                         scanf("%d", &tmp.eng);
@@ -377,10 +377,10 @@ void searchID(){
                         printf("History: ");
                         scanf("%d", &tmp.his);
                         fprintf(fp1,"%s %s %s %s %s %s %d %d %d %d %d\n",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.con,rec1.career,tmp.eng, tmp.math, tmp.sci, tmp.com, tmp.his);
-                    }
+                    }                                                                                                                  //tmp because we can found id :)
                     else{
                         fprintf(fp1,"%s %s %s %s %s %s %d %d %d %d %d\n",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.con,rec1.career,rec1.eng, rec1.math, rec1.sci, rec1.com, rec1.his);
-                    }
+                    }                                                                                                                  //this case means we can't find the id :'(
                 }
                 fclose(fp);
                 fclose(fp1);
@@ -418,11 +418,11 @@ void searchID(){
 }
 
 //viewAll function
-void viewAll(){
+void viewAll(){ //Yeah Now, you can see all the students score
     FILE *fp;
     fp = fopen("record.txt", "r");
-    while(fscanf(fp,"%s %s %s %s %s %s %d %d %d %d %d",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.con,rec1.career,&rec1.eng, &rec1.math, &rec1.sci, &rec1.com, &rec1.his) != EOF){
-        if(!strcmp(rec1.career, "Student")){
+    while(fscanf(fp,"%s %s %s %s %s %s %d %d %d %d %d",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.con,rec1.career,&rec1.eng, &rec1.math, &rec1.sci, &rec1.com, &rec1.his) != EOF){ //It will scan in record.txt until it can not find the data.
+        if(!strcmp(rec1.career, "Student")){ //check logic is 1 print the score of that student
             printf("Name: %s %s\n Score\n  English: %d\n  Mathematics: %d\n  Science: %d\n  Computer: %d\n  History: %d\n",rec1.name,rec1.last,rec1.eng, rec1.math, rec1.sci, rec1.com, rec1.his);
             printf("------------------------------------------------------------------------\n");
         }
