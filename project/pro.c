@@ -325,8 +325,7 @@ void teacher(){
     printf("1: Search student by ID\n");
     printf("2: View all student\n");
     printf("3: Statistics\n");
-    printf("4: Change Password\n");
-    printf("5: Exit\n\n");
+    printf("4: Exit\n\n");
     printf("Choose your choice: ");
     scanf("%d",&choice);
 
@@ -341,9 +340,6 @@ void teacher(){
             stat();
             break;
         case 4:
-            // changePass();
-            break;
-        case 5:
             mainScreen();
             break;
     }
