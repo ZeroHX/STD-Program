@@ -335,7 +335,7 @@ void searchID(){
     fp = fopen("record.txt","r"); //rb >>> Open for reading in binary mode
 
     while(fscanf(fp,"%s %s %s %s %s %s %d %d %d %d %d",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.con,rec1.career,&rec1.eng, &rec1.math, &rec1.sci, &rec1.com, &rec1.his) != EOF){
-        if(!strcmp(search_id, rec1.user)){
+        if(!strcmp(search_id, rec1.user) && !strcmp(rec1.career, "Student")){
             status = 1;
             break;
         }
