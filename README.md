@@ -5,27 +5,21 @@ This repository is a project in Computer Programming, Faculty of Information Tec
 <br><br>
 
 [![obj](https://img.shields.io/badge/Goto-Objective-red.svg)](#obj)
-[![graph](https://img.shields.io/badge/Goto-Graph-blue.svg)](#graph)
 [![con](https://img.shields.io/badge/Goto-Conclusion-yellow.svg)](#con)
-[![res](https://img.shields.io/badge/Goto-Result-orange.svg)](#res)
-[![author](https://img.shields.io/badge/Goto-Author-pink.svg)](#author)
-[![cr](https://img.shields.io/badge/Goto-Credits-green.svg)](#cr)<br>
+[![abs](https://img.shields.io/badge/Goto-Result-orange.svg)](#res)
+[![author](https://img.shields.io/badge/Goto-Author-pink.svg)](#author)<br>
 
 <h2 id='obj'>Objective :dart:</h2> 
-
 Project นี้มีวัตถุประสงค์จัดทำขึ้นเพื่อให้บุคลากรทางการศึกษา เช่น ครู นักเรียน สามารถใช้งานโปรแกรมในการเพิ่มประสิทธิภาพในการเก็บข้อมูลทางการศึกษา เช่น คะแนนรายวิชาต่างๆ แสดงออกมาในรูปแบบ ค่าเฉลี่ย คะแนนสูงสุด-ตํ่าสุดรายวิชา และ ผลรวมคะแนนทั้งหมดในรูปแบบค่าเฉลี่ย และคะแนนสูงสุด-ตํ่าสุดของคะแนนรวม<br><br>
 
 
-<h2 id='con'>Conclusion :bulb:</h2>
 
+<h2 id='abs'>Abstract :key:</h2>
+  บทคัดย่อจ้า
 <br>
-
-<h2 id='res'>Result :key:</h2>
-
 
 
 <h2 id='author'>Author :notebook_with_decorative_cover:</h2>
-
 |<img src="src/img-member/guitar.jpg" width="120px" height="115px">|<img src="src/img-member/job.jpg" width="120px" height="130px">|<img src="src/img-member/antz.jpg" width="120px" height="120px">|<img src="src/img-member/jinny.jpg" width="120px" height="100px">|
 |:---:|:---:|:---:|:---:|
 |[ZeroHX](https://github.com/ZeroHX)|[Thawornch](https://github.com/Thawornch)|[AnTznimalz](https://github.com/AnTznimalz)|[jinnygym](https://github.com/jinnygym)|
