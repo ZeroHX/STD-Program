@@ -5,8 +5,7 @@ This repository is a project in Computer Programming, Faculty of Information Tec
 <br><br>
 
 [![obj](https://img.shields.io/badge/Goto-Objective-red.svg)](#obj)
-[![con](https://img.shields.io/badge/Goto-Conclusion-yellow.svg)](#con)
-[![abs](https://img.shields.io/badge/Goto-Result-orange.svg)](#res)
+[![abs](https://img.shields.io/badge/Goto-Abstract-green.svg)](#abs)
 [![author](https://img.shields.io/badge/Goto-Author-pink.svg)](#author)<br>
 
 <h2 id='obj'>Objective :dart:</h2> 
