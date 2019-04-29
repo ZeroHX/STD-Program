@@ -33,7 +33,7 @@ struct Record{
     float sci;
     float com;
     float his;
-}rec1, tmp;
+}rec1, tmp, sign;
 
 struct Stat{
     float max;
@@ -101,8 +101,8 @@ void login(){
     /* Method to read .txt file (googling plz)*/
     FILE *fp;
     fp = fopen("record.txt","r"); //rb >>> Open for reading in binary mode
-    while(fscanf(fp,"%s %s %s %s %s %f %f %f %f %f",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.career,&rec1.eng, &rec1.math, &rec1.sci, &rec1.com, &rec1.his) != EOF){
-        if(!strcmp(log_id, rec1.user) && !strcmp(log_pass, rec1.pass)){
+    while(fscanf(fp,"%s %s %s %s %s %f %f %f %f %f",sign.name,sign.last,sign.user,sign.pass,sign.career,&sign.eng, &sign.math, &sign.sci, &sign.com, &sign.his) != EOF){
+        if(!strcmp(log_id, sign.user) && !strcmp(log_pass, sign.pass)){
             printf("\nLogin Successful!!");
             status = 1;
             break;
@@ -111,10 +111,10 @@ void login(){
     if(status == 1){
         system("cls");
         printf("Login Successful!!\n\n");
-        if(strcmp(rec1.career, "Teacher") == 0){
+        if(strcmp(sign.career, "Teacher") == 0){
             teacher();
         }
-        else if(strcmp(rec1.career, "Student") == 0){
+        else if(strcmp(sign.career, "Student") == 0){
             student();
         }
         fclose(fp);
@@ -319,7 +319,7 @@ void confirm(){
 /* -------------- This is Teacher-Part --------------- */
 void teacher(){
     int choice;
-    printf("Hello %s You are %s\n", rec1.name, rec1.career);
+    printf("Hello %s You are %s\n", sign.name, sign.career);
     printf("------------------------------\n");
     printf("1: Search student by ID\n");
     printf("2: View all student\n");
@@ -470,7 +470,7 @@ void viewAll(){ //Yeah Now, you can see all the students score
 /* This is Student Part */
 void student(){
     int choice;
-    printf("Hello %s You are %s\n", rec1.name, rec1.career);
+    printf("Hello %s You are %s\n", sign.name, sign.career);
     printf("------------------------------\n");
     printf("1: View your score\n");
     printf("2: Exit\n");
@@ -502,15 +502,16 @@ void viewScore(){
     s_eng.avg = 0, s_math.avg = 0, s_sci.avg = 0, s_com.avg = 0, s_his.avg = 0, s_all.avg = 0;
     
     float total = 0;
-    total += rec1.eng + rec1.math + rec1.sci + rec1.com + rec1.his;
+    total += sign.eng + sign.math + sign.sci + sign.com + sign.his;
     system("cls");
     printf("============================== My Score ==============================\n\n");
-    printf("Name: %s %s\n\n", rec1.name, rec1.last);
-    printf("English     : %.2f\n", rec1.eng);
-    printf("Mathematics : %.2f\n", rec1.math);
-    printf("Science     : %.2f\n", rec1.sci);
-    printf("Computer    : %.2f\n", rec1.com);
-    printf("History     : %.2f\n\n", rec1.his);
+    printf("Name: %s %s\n\n", sign.name, sign.last);
+    printf("English     : %.2f\n", sign.eng);
+    printf("Mathematics : %.2f\n", sign.math);
+    printf("Science     : %.2f\n", sign.sci);
+    printf("Computer    : %.2f\n", sign.com);
+    printf("History     : %.2f\n\n", sign.his);
+    printf("Average       : %.2f\n\n\n", total/5);
 
     FILE *fp;
     fp = fopen("record.txt", "r");
@@ -554,7 +555,7 @@ void viewScore(){
     
     
 
-    printf("Average       : %.2f\n\n\n", total/5);
+
     printf("============================== Statistics ==============================\n\n");
     printf(" English: \n");
     printf("\tMAX: %.2f\n\tMIN: %.2f\n\tAVG: %.2f\n\n", s_eng.max, s_eng.min, s_eng.avg);
