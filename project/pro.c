@@ -100,7 +100,7 @@ void login(){
 
     /* Method to read .txt file (googling plz)*/
     FILE *fp;
-    fp = fopen("record.txt","r"); //rb >>> Open for reading in binary mode
+    fp = fopen("../data/record.txt","r"); //rb >>> Open for reading in binary mode
     while(fscanf(fp,"%s %s %s %s %s %f %f %f %f %f",sign.name,sign.last,sign.user,sign.pass,sign.career,&sign.eng, &sign.math, &sign.sci, &sign.com, &sign.his) != EOF){
         if(!strcmp(log_id, sign.user) && !strcmp(log_pass, sign.pass)){
             printf("\nLogin Successful!!");
@@ -135,9 +135,9 @@ void regis(){
     int yn;
     /* Method to write(append) .txt file (googling plz)*/
     FILE *fp;
-    fp = fopen("record.txt","ab+");
+    fp = fopen("../data/record.txt","ab+");
 
-    if(fp == NULL) printf("Error! Check your file! (record.txt)");
+    if(fp == NULL) printf("Error! Check your file! (../data/record.txt)");
     else{
         system("cls");
         printf("Please Enter Your Information Correctly\n");
@@ -359,7 +359,7 @@ void searchID(){
 
     int status = 0;
     FILE *fp, *fp1;
-    fp = fopen("record.txt","r"); //rb >>> Open for reading in binary mode
+    fp = fopen("../data/record.txt","r"); //rb >>> Open for reading in binary mode
 
     while(fscanf(fp,"%s %s %s %s %s %f %f %f %f %f",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.career,&rec1.eng, &rec1.math, &rec1.sci, &rec1.com, &rec1.his) != EOF){
         if(!strcmp(search_id, rec1.user) && !strcmp(rec1.career, "Student")){
@@ -388,8 +388,8 @@ void searchID(){
         char score[10];
         switch(choice){
             case 1:
-                fp = fopen("record.txt", "r");
-                fp1 = fopen("temp.txt", "a");
+                fp = fopen("../data/record.txt", "r");
+                fp1 = fopen("../data/temp.txt", "a");
                 while(fscanf(fp,"%s %s %s %s %s %f %f %f %f %f",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.career,&rec1.eng, &rec1.math, &rec1.sci, &rec1.com, &rec1.his) != EOF){
                     if(!strcmp(search_id, rec1.user)){ //if 1
                         printf("Enter Score\n");
@@ -412,11 +412,11 @@ void searchID(){
                 fclose(fp);
                 fclose(fp1);
 
-                fp = fopen("record.txt", "w");
+                fp = fopen("../data/record.txt", "w");
                 fclose(fp);
 
-                fp = fopen("record.txt", "a");
-                fp1 = fopen("temp.txt", "r");
+                fp = fopen("../data/record.txt", "a");
+                fp1 = fopen("../data/temp.txt", "r");
                 while(fscanf(fp1,"%s %s %s %s %s %f %f %f %f %f",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.career,&rec1.eng, &rec1.math, &rec1.sci, &rec1.com, &rec1.his) != EOF){
                     fprintf(fp,"%s %s %s %s %s %f %f %f %f %f\n",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.career,rec1.eng, rec1.math, rec1.sci, rec1.com, rec1.his);
                 }
@@ -424,7 +424,7 @@ void searchID(){
                 fclose(fp);
                 fclose(fp1);
 
-                fp1 = fopen("temp.txt", "w");
+                fp1 = fopen("../data/temp.txt", "w");
                 fclose(fp1);
                 system("cls");
                 teacher();
@@ -453,8 +453,8 @@ void searchID(){
 //viewAll function
 void viewAll(){ //Yeah Now, you can see all the students score
     FILE *fp;
-    fp = fopen("record.txt", "r");
-    while(fscanf(fp,"%s %s %s %s %s %f %f %f %f %f",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.career,&rec1.eng, &rec1.math, &rec1.sci, &rec1.com, &rec1.his) != EOF){ //It will scan in record.txt until it can not find the data.
+    fp = fopen("../data/record.txt", "r");
+    while(fscanf(fp,"%s %s %s %s %s %f %f %f %f %f",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.career,&rec1.eng, &rec1.math, &rec1.sci, &rec1.com, &rec1.his) != EOF){ //It will scan in ../data/record.txt until it can not find the ../data.
         if(!strcmp(rec1.career, "Student")){ //check logic is 1 print the score of that student
             printf("ID: %s   Name: %s %s\nScore:\n \tEnglish: %.2f\n \tMathematics: %.2f\n \tScience: %.2f\n \tComputer: %.2f\n \tHistory: %.2f\n",rec1.user,rec1.name,rec1.last,rec1.eng, rec1.math, rec1.sci, rec1.com, rec1.his);
             printf("------------------------------------------------------------------------\n");
@@ -514,8 +514,8 @@ void viewScore(){
     printf("Average       : %.2f\n\n\n", total/5);
 
     FILE *fp;
-    fp = fopen("record.txt", "r");
-    while(fscanf(fp,"%s %s %s %s %s %f %f %f %f %f",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.career,&rec1.eng, &rec1.math, &rec1.sci, &rec1.com, &rec1.his) != EOF){ //It will scan in record.txt until it can not find the data.
+    fp = fopen("../data/record.txt", "r");
+    while(fscanf(fp,"%s %s %s %s %s %f %f %f %f %f",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.career,&rec1.eng, &rec1.math, &rec1.sci, &rec1.com, &rec1.his) != EOF){ //It will scan in ../data/record.txt until it can not find the ../data.
         if(!strcmp(rec1.career, "Student")){ //check logic is 1 print the score of that student
             float total = 0;
             total = (rec1.eng + rec1.math + rec1.sci + rec1.com + rec1.his)/5;
@@ -591,8 +591,8 @@ void stat(){
     s_eng.avg = 0, s_math.avg = 0, s_sci.avg = 0, s_com.avg = 0, s_his.avg = 0, s_all.avg = 0;
     
     FILE *fp;
-    fp = fopen("record.txt", "r");
-    while(fscanf(fp,"%s %s %s %s %s %f %f %f %f %f",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.career,&rec1.eng, &rec1.math, &rec1.sci, &rec1.com, &rec1.his) != EOF){ //It will scan in record.txt until it can not find the data.
+    fp = fopen("../data/record.txt", "r");
+    while(fscanf(fp,"%s %s %s %s %s %f %f %f %f %f",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.career,&rec1.eng, &rec1.math, &rec1.sci, &rec1.com, &rec1.his) != EOF){ //It will scan in ../data/record.txt until it can not find the ../data.
         if(!strcmp(rec1.career, "Student")){ //check logic is 1 print the score of that student
             // printf("StudentName: %s\n", rec1.name);
             isStu = 1;
