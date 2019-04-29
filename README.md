@@ -19,6 +19,7 @@ Project นี้มีวัตถุประสงค์จัดทำขึ
 
 
 <h2 id='author'>Author :notebook_with_decorative_cover:</h2>
+
 |<img src="src/img-member/guitar.jpg" width="120px" height="115px">|<img src="src/img-member/job.jpg" width="120px" height="130px">|<img src="src/img-member/antz.jpg" width="120px" height="120px">|<img src="src/img-member/jinny.jpg" width="120px" height="100px">|
 |:---:|:---:|:---:|:---:|
 |[ZeroHX](https://github.com/ZeroHX)|[Thawornch](https://github.com/Thawornch)|[AnTznimalz](https://github.com/AnTznimalz)|[jinnygym](https://github.com/jinnygym)|
