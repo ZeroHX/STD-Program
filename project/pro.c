@@ -111,8 +111,6 @@ void login(){
     if(status == 1){
         system("cls");
         printf("Login Successful!!\n\n");
-        printf("Welcome back %s !!\n\n", rec1.name);
-        printf("You are %s !!\n\n", rec1.career);
         if(strcmp(rec1.career, "Teacher") == 0){
             teacher();
         }
@@ -256,7 +254,7 @@ void regis(){
                 regis();
                 break;
             default:
-                printf("**  Invalid Choice  **");
+                printf("**  Invalid Choice  **\n");
                 regis();
                 break;
         }
@@ -321,6 +319,7 @@ void confirm(){
 /* -------------- This is Teacher-Part --------------- */
 void teacher(){
     int choice;
+    printf("Hello %s You are %s\n", rec1.name, rec1.career);
     printf("------------------------------\n");
     printf("1: Search student by ID\n");
     printf("2: View all student\n");
@@ -341,6 +340,13 @@ void teacher(){
             break;
         case 4:
             mainScreen();
+            break;
+        default:
+            printf("\n**  Invalid Choice  **\n\n\n");
+            printf("Press any key to continue...\n");
+            getch();
+            system("cls");
+            teacher();
             break;
     }
 }
@@ -464,7 +470,8 @@ void viewAll(){ //Yeah Now, you can see all the students score
 /* This is Student Part */
 void student(){
     int choice;
-    printf("--------You're Student--------\n");
+    printf("Hello %s You are %s\n", rec1.name, rec1.career);
+    printf("------------------------------\n");
     printf("1: View your score\n");
     printf("2: Exit\n");
     printf("Choose your choice: ");
@@ -478,11 +485,11 @@ void student(){
             mainScreen();
             break;
         default:
-            printf("Invalid Choice!");
-            printf("\n\n                        Press any key to continue!");
+            printf("\n**  Invalid Choice  **\n\n\n");
+            printf("Press any key to continue...\n");
             getch();
             system("cls");
-            mainScreen();
+            student();
             break;
     }
 }
