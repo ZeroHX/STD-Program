@@ -57,11 +57,12 @@ int isStu = 0;
 //Simple main, for goto mainScreen
 int main(){
     system("cls");
-    printf("====================================================\n\n");
-    printf("Welcome to STD-Program\n");
-    printf("This project is part of subject Computer Programming\n\n");
-    printf("====================================================\n\n\n");
-    printf("          Press any key to continue!");
+    printf("===============================================================================\n\n");
+    printf("\t\t$$$$$$$$$$   Welcome to STD-Program  $$$$$$$$$$\n\n");
+    printf("\t\t\t  The next level of education!\n\n");
+    printf("\t      This project is part of subject Computer Programming\n\n");
+    printf("================================================================================\n\n\n");
+    printf("\t\t\t  Press any key to continue...");
     getch();
     system("cls");
     mainScreen();
@@ -71,14 +72,23 @@ void login(){
     char log_id[20], log_pass[20];  //tmp User & Pass input
     int status = 0;     //check User & Pass state (0/1)
     system("cls");      //For Clear screen
-    printf("Login To STD-Program!!\n\n");
+    printf("\t   ====================================================\n");
+    printf("\t\t____________   ____________   __________\n");
+    printf("\t\t|   _________| |____    ____| |  _______ \\\n");
+    printf("\t\t|  |_________       |  |      | |       | |\n");
+    printf("\t\t|_________   |      |  |      | |       | |\n");
+    printf("\t\t ________|   |      |  |      | |_______| |\n");
+    printf("\t\t|____________|      |__|      |___________|\n\n");
+    printf("\t    ====================================================\n\n");
+
+    printf("\t\t\tLogin To STD-Program!!\n\n");
 
     /*USERNAME Input*/
-    printf("Username: ");
+    printf("\t\t\tUsername: ");
     scanf("%s", log_id);
 
     /*PASSWORD Input*/
-    printf("\nPassword: ");
+    printf("\n\t\t\tPassword: ");
     int i = 0;
     while(1){
         char ch = getch();  //Get input from Keyboard (KEYCODE)
@@ -103,14 +113,26 @@ void login(){
     fp = fopen("../data/record.txt","r"); //rb >>> Open for reading in binary mode
     while(fscanf(fp,"%s %s %s %s %s %f %f %f %f %f",sign.name,sign.last,sign.user,sign.pass,sign.career,&sign.eng, &sign.math, &sign.sci, &sign.com, &sign.his) != EOF){
         if(!strcmp(log_id, sign.user) && !strcmp(log_pass, sign.pass)){
-            printf("\nLogin Successful!!");
+            printf("\n\t\t\tLogin Successful!!");
             status = 1;
             break;
         }
     }
     if(status == 1){
         system("cls");
-        printf("Login Successful!!\n\n");
+
+
+        printf("\t   ====================================================\n");
+        printf("\t\t____________   ____________   __________\n");
+        printf("\t\t|   _________| |____    ____| |  _______ \\\n");
+        printf("\t\t|  |_________       |  |      | |       | |\n");
+        printf("\t\t|_________   |      |  |      | |       | |\n");
+        printf("\t\t ________|   |      |  |      | |_______| |\n");
+        printf("\t\t|____________|      |__|      |___________|\n\n");
+        printf("\t    ====================================================\n");
+        printf("\t\t\t ________________________\n");
+        printf("\n\t\t\t|   Login Successful!!   |\n");
+        printf("\t\t\t ________________________\n\n");
         if(strcmp(sign.career, "Teacher") == 0){
             teacher();
         }
@@ -121,9 +143,9 @@ void login(){
     }
     else{
         fclose(fp);
-        printf("\n\nWrong Username/Password\n");
-        printf("Please check your account again or register first!\n\n");
-        printf("Press any key to continue!");
+        printf("\n\n\n\t\t    ** Wrong Username/Password **\n");
+        printf("\t    Please check your account again or register first!\n\n");
+        printf("\t\t      Press any key to continue...");
         getch();
         system("cls");
         mainScreen();
@@ -434,7 +456,7 @@ void searchID(){
                 teacher();
                 break;
             default:
-                printf("*** Invalid Choice  ***");
+                printf("\t\t\t*** Invalid Choice  ***");
                 fclose(fp);
                 teacher();
                 break;
@@ -470,11 +492,11 @@ void viewAll(){ //Yeah Now, you can see all the students score
 /* This is Student Part */
 void student(){
     int choice;
-    printf("Hello %s You are %s\n", sign.name, sign.career);
-    printf("------------------------------\n");
-    printf("1: View your score\n");
-    printf("2: Exit\n");
-    printf("Choose your choice: ");
+    printf("\t\t\tHello %s You are %s\n", sign.name, sign.career);
+    printf("\t\t    ----------------------------------\n");
+    printf("\t\t\t  1: View your score\n");
+    printf("\t\t\t  2: Exit\n\n");
+    printf("\t\t\tChoose your choice: ");
     scanf("%d",&choice);
 
     switch(choice){
@@ -485,8 +507,8 @@ void student(){
             mainScreen();
             break;
         default:
-            printf("\n**  Invalid Choice  **\n\n\n");
-            printf("Press any key to continue...\n");
+            printf("\n\n\t\t\t**  Invalid Choice  **\n");
+            printf("\t\t      Press any key to continue...");
             getch();
             system("cls");
             student();
@@ -496,11 +518,11 @@ void student(){
 
 //ViewScore function
 void viewScore(){
-    int count = 0; 
+    int count = 0;
     s_eng.max= FLT_MIN, s_math.max= FLT_MIN, s_sci.max= FLT_MIN, s_com.max= FLT_MIN, s_his.max= FLT_MIN, s_all.max = FLT_MIN;
     s_eng.min = FLT_MAX, s_math.min = FLT_MAX, s_sci.min = FLT_MAX, s_com.min = FLT_MAX, s_his.min = FLT_MAX, s_all.min = FLT_MAX;
     s_eng.avg = 0, s_math.avg = 0, s_sci.avg = 0, s_com.avg = 0, s_his.avg = 0, s_all.avg = 0;
-    
+
     float total = 0;
     total += sign.eng + sign.math + sign.sci + sign.com + sign.his;
     system("cls");
@@ -521,7 +543,7 @@ void viewScore(){
             total = (rec1.eng + rec1.math + rec1.sci + rec1.com + rec1.his)/5;
             if(total > s_all.max) s_all.max = total;
             if(total < s_all.min) s_all.min = total;
-            
+
 
             if(rec1.eng > s_eng.max) s_eng.max = rec1.eng;
             if(rec1.math > s_math.max) s_math.max = rec1.math;
@@ -552,8 +574,8 @@ void viewScore(){
     s_com.avg /= count;
     s_his.avg /= count;
     s_all.avg /= count;
-    
-    
+
+
 
 
     printf("============================== Statistics ==============================\n\n");
@@ -579,17 +601,17 @@ void viewScore(){
     getch();
     system("cls");
     student();
-    
+
 }
 
 //Statistics Function
 //(each subject)Max Min AVG, (all subject)Max Min AVG
 void stat(){
-    int count = 0; 
+    int count = 0;
     s_eng.max= FLT_MIN, s_math.max= FLT_MIN, s_sci.max= FLT_MIN, s_com.max= FLT_MIN, s_his.max= FLT_MIN, s_all.max = FLT_MIN;
     s_eng.min = FLT_MAX, s_math.min = FLT_MAX, s_sci.min = FLT_MAX, s_com.min = FLT_MAX, s_his.min = FLT_MAX, s_all.min = FLT_MAX;
     s_eng.avg = 0, s_math.avg = 0, s_sci.avg = 0, s_com.avg = 0, s_his.avg = 0, s_all.avg = 0;
-    
+
     FILE *fp;
     fp = fopen("../data/record.txt", "r");
     while(fscanf(fp,"%s %s %s %s %s %f %f %f %f %f",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.career,&rec1.eng, &rec1.math, &rec1.sci, &rec1.com, &rec1.his) != EOF){ //It will scan in ../data/record.txt until it can not find the ../data.
@@ -600,7 +622,7 @@ void stat(){
             total = (rec1.eng + rec1.math + rec1.sci + rec1.com + rec1.his)/5;
             if(total > s_all.max) s_all.max = total;
             if(total < s_all.min) s_all.min = total;
-            
+
 
             if(rec1.eng > s_eng.max) s_eng.max = rec1.eng;
             if(rec1.math > s_math.max) s_math.max = rec1.math;
@@ -655,7 +677,7 @@ void stat(){
     getch();
     system("cls");
     teacher();
-    
+
 }
 
 //View Score Function
@@ -663,15 +685,20 @@ void stat(){
 void mainScreen(){
     int choice;
     system("cls");
-    printf("====================================================\n\n");
-    printf("Welcome to STD-Program\n");
-    printf("This project is part of subject Computer Programming\n\n");
-    printf("====================================================\n");
 
-    printf("\n1.| Login\n");
-    printf("2.| Register\n\n");
-    printf("==============================\n");
-    printf("Choose your Choice: ");
+    printf("\t   ====================================================\n");
+    printf("\t\t____________   ____________   __________\n");
+    printf("\t\t|   _________| |____    ____| |  _______ \\\n");
+    printf("\t\t|  |_________       |  |      | |       | |\n");
+    printf("\t\t|_________   |      |  |      | |       | |\n");
+    printf("\t\t ________|   |      |  |      | |_______| |\n");
+    printf("\t\t|____________|      |__|      |___________|\n\n");
+    printf("\t    ====================================================\n");
+
+    printf("\n\t\t\t\t1.| Login\n");
+    printf("\t\t\t\t2.| Register\n\n");
+    printf("\t\t\t==============================\n");
+    printf("\n\t\t\t    Choose your Choice: ");
     scanf("%d",& choice);
 
 
