@@ -48,7 +48,6 @@ void mainScreen();
 void teacher();
 void student();
 void searchID();
-void confirm();
 void viewAll();
 void stat();
 void viewScore();
@@ -57,11 +56,11 @@ int isStu = 0;
 //Simple main, for goto mainScreen
 int main(){
     system("cls");
-    printf("===============================================================================\n\n");
+    printf("\t===================================================================\n\n");
     printf("\t\t$$$$$$$$$$   Welcome to STD-Program  $$$$$$$$$$\n\n");
     printf("\t\t\t  The next level of education!\n\n");
     printf("\t      This project is part of subject Computer Programming\n\n");
-    printf("================================================================================\n\n\n");
+    printf("\t===================================================================\n\n\n");
     printf("\t\t\t  Press any key to continue...");
     getch();
     system("cls");
@@ -191,8 +190,8 @@ void regis(){
                 strcpy(rec1.career, "Student");
                 break;
             default:
-                printf("\t\t**  Invalid Career  **");
-                printf("\t\t          Press any key to continue...");
+                printf("\n\t\t**  Invalid Career  **\n");
+                printf("\t\t    Press any key to continue...");
                 getch();
                 regis();
         }
@@ -200,7 +199,7 @@ void regis(){
         /* USERNAME */
         printf("\n\t\t\tUsername: ");
         scanf("%s",&rec1.user);
-
+        jump1:
         /* PASSWORD */
         printf("\t\t\tPassword: ");
         int i = 0;
@@ -248,12 +247,11 @@ void regis(){
 
     }
     else{
-        printf("\n\t\tConfirm Failed\n");
-        system("cls");
-        confirm();
+        printf("\n\n\t\tConfirm Failed\n");
+        goto jump1;
     }
 
-        printf("\n\n\t\t------------------------------------------\n");
+        printf("\n\t\t------------------------------------------\n");
         printf("\t\tName: %s %s\n",rec1.name,rec1.last);
         printf("\t\tCareer: %s\n", rec1.career);
         printf("\t\tUsername: %s\n",rec1.user);
@@ -282,81 +280,28 @@ void regis(){
                 mainScreen();
                 break;
             case 2:
-                regis();
+                mainScreen();
                 break;
             default:
-                printf("**  Invalid Choice  **\n");
+                printf("\n\t\t**  Invalid Choice  **\n\n");
+                printf("\t\tPress any key to register again...");
+                getch();
                 regis();
                 break;
         }
-    }
-}
-
-void confirm(){
-    printf("\n\t\tPlease Enter Password Again\n");
-    printf("\n\t\tPassword: ");
-        int i = 0;
-        while(1){
-            char ch = getch();  //Get input from Keyboard (KEYCODE)
-            if(ch == 13 || ch == 9){    //13 is ENTER & 9 is TAB
-                rec1.pass[i] = '\0';    //Set the end point of String
-                break;
-            }
-            else if(ch == 8){   //8 is BackSpace (for del)
-                if(i>0){
-                    i--;
-                    printf("\b \b");    //NOTE: Keep space with \b
-                }
-            }
-            else{       //Replace password with star(*)
-                rec1.pass[i++] = ch;
-                printf("* \b");
-            }
-        }
-        //Confirm Password
-        printf("\n\t\tPlease Confirm Password: ");
-        int j = 0;
-        while(1){
-            char hc = getch();  //Get input from Keyboard (KEYCODE)
-            if(hc == 13 || hc == 9){    //13 is ENTER & 9 is TAB
-                rec1.con[j] = '\0';    //Set the end point of String
-                break;
-            }
-            else if(hc == 8){   //8 is BackSpace (for del)
-                if(j>0){
-                    j--;
-                    printf("\b \b");    //NOTE: Keep space with \b
-                }
-            }
-            else{       //Replace password with star(*)
-                rec1.con[j++] = hc;
-                printf("* \b");
-            }
-        }
-    //Check Password & Confirm
-    if(strcmp(rec1.pass ,rec1.con) == 0){
-        printf("\n\n\t\tConfirm Password Correct\n");
-        // system("cls");
-    }
-    else{
-        printf("\nTry Again\n");
-        strcpy(rec1.pass, "");
-        strcpy(rec1.con, "");
-        system("cls");
-        confirm();
     }
 }
 
 /* -------------- This is Teacher-Part --------------- */
 void teacher(){
     int choice;
-    printf("Hello %s You are %s\n", sign.name, sign.career);
-    printf("------------------------------\n");
-    printf("1: Search student by ID\n");
-    printf("2: View all student\n");
-    printf("3: Statistics\n");
-    printf("4: Exit\n\n");
-    printf("Choose your choice: ");
+    printf("\n\t\t\tHello %s You are %s\n", sign.name, sign.career);
+    printf("\t\t\t------------------------------\n");
+    printf("\t\t\t1: Search student by ID\n");
+    printf("\t\t\t2: View all student\n");
+    printf("\t\t\t3: Statistics\n");
+    printf("\t\t\t4: Exit\n\n");
+    printf("\t\t\tChoose your choice: ");
     scanf("%d",&choice);
 
     switch(choice){
@@ -364,9 +309,11 @@ void teacher(){
             searchID();
             break;
         case 2:
-            viewAll(); //viewAll is now available eiei from Jakkawan
+            system("cls");
+            viewAll();
             break;
         case 3:
+            system("cls");
             stat();
             break;
         case 4:
@@ -410,9 +357,9 @@ void searchID(){
         printf("\n\t----------------------------------------------------------\n\n\n");
         fclose(fp);
         int choice;
-        printf("1: Edit score\n");
-        printf("2: Exit\n");
-        printf("Choose your choice: ");
+        printf("\t\t1: Edit score\n");
+        printf("\t\t2: Exit\n");
+        printf("\t\tChoose your choice: ");
         scanf("%d",&choice);
 
         system("cls");
@@ -424,22 +371,40 @@ void searchID(){
                 while(fscanf(fp,"%s %s %s %s %s %f %f %f %f %f",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.career,&rec1.eng, &rec1.math, &rec1.sci, &rec1.com, &rec1.his) != EOF){
                     if(!strcmp(search_id, rec1.user)){ //if 1
                         printf("Enter Score\n");
+                        engIn:
                         printf("English: ");
                         scanf("%f", &tmp.eng);
+                        if(tmp.eng > 100 || tmp.eng < 0) {printf("Invalid score !!, Please enter score[0-100]\n\n"); goto engIn;}
+                        
+                        mathIn:
                         printf("Mathematics: ");
                         scanf("%f", &tmp.math);
+                        if(tmp.math > 100 || tmp.math < 0) {printf("Invalid score !!, Please enter score[0-100]\n\n"); goto mathIn;}
+                        
+                        sciIn:
                         printf("Science: ");
                         scanf("%f", &tmp.sci);
+                        if(tmp.sci > 100 || tmp.sci < 0) {printf("Invalid score !!, Please enter score[0-100]\n\n"); goto sciIn;}
+                        
+                        comIn:
                         printf("Computer: ");
                         scanf("%f", &tmp.com);
+                        if(tmp.com > 100 || tmp.com < 0) {printf("Invalid score !!, Please enter score[0-100]\n\n"); goto comIn;}
+                        
+                        hisIn:
                         printf("History: ");
                         scanf("%f", &tmp.his);
+                        if(tmp.his > 100 || tmp.his < 0) {printf("Invalid score !!, Please enter score[0-100]\n\n"); goto hisIn;}
+
                         fprintf(fp1,"%s %s %s %s %s %f %f %f %f %f\n",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.career,tmp.eng, tmp.math, tmp.sci, tmp.com, tmp.his);
                     }                                                                                                                  //tmp because we can found id :)
                     else{
                         fprintf(fp1,"%s %s %s %s %s %f %f %f %f %f\n",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.career,rec1.eng, rec1.math, rec1.sci, rec1.com, rec1.his);
                     }                                                                                                                  //this case means we can't find the id :'(
                 }
+                printf("\n\t\t\tEdit score success !!!\n");
+                printf("\t\t\tPress any key to continue...");
+                getch();
                 fclose(fp);
                 fclose(fp1);
 
@@ -465,7 +430,7 @@ void searchID(){
                 teacher();
                 break;
             default:
-                printf("\t\t\t*** Invalid Choice  ***");
+                printf("\t\t\t*** Invalid Choice  ***\n");
                 fclose(fp);
                 teacher();
                 break;
@@ -487,7 +452,7 @@ void viewAll(){ //Yeah Now, you can see all the students score
     fp = fopen("../data/record.txt", "r");
     while(fscanf(fp,"%s %s %s %s %s %f %f %f %f %f",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.career,&rec1.eng, &rec1.math, &rec1.sci, &rec1.com, &rec1.his) != EOF){ //It will scan in ../data/record.txt until it can not find the ../data.
         if(!strcmp(rec1.career, "Student")){ //check logic is 1 print the score of that student
-            printf("\t\tID: %s     Name: %s %s\n\t\tScore:\n \t\t\tEnglish: %.2f\n \t\t\tMathematics: %.2f\n \t\t\tScience: %.2f\n \t\t\tComputer: %.2f\n \t\t\tHistory: %.2f\n",rec1.user,rec1.name,rec1.last,rec1.eng, rec1.math, rec1.sci, rec1.com, rec1.his);
+            printf("\n\t\tID: %s    Name: %s %s\n\t\tScore:\n \t\t\tEnglish: %.2f\n \t\t\tMathematics: %.2f\n \t\t\tScience: %.2f\n \t\t\tComputer: %.2f\n \t\t\tHistory: %.2f\n\n",rec1.user,rec1.name,rec1.last,rec1.eng, rec1.math, rec1.sci, rec1.com, rec1.his);
             printf("------------------------------------------------------------------------\n");
         }
     }
@@ -592,16 +557,16 @@ void viewScore(){
     printf("============================== Statistics ==============================\n\n");
     printf(" English: \n\n");
     printf("\tMAX: %.2f\n\tMIN: %.2f\n\tAVG: %.2f\n\n", s_eng.max, s_eng.min, s_eng.avg);
-    printf("------------------------------------------------------------------------\n");
+    printf("------------------------------------------------------------------------\n\n");
     printf(" Mathematics: \n\n");
     printf("\tMAX: %.2f\n\tMIN: %.2f\n\tAVG: %.2f\n\n", s_math.max, s_math.min, s_math.avg);
-    printf("------------------------------------------------------------------------\n");
+    printf("------------------------------------------------------------------------\n\n");
     printf(" Science: \n\n");
     printf("\tMAX: %.2f\n\tMIN: %.2f\n\tAVG: %.2f\n\n", s_sci.max, s_sci.min, s_sci.avg);
-    printf("------------------------------------------------------------------------\n");
+    printf("------------------------------------------------------------------------\n\n");
     printf(" Computer: \n\n");
     printf("\tMAX: %.2f\n\tMIN: %.2f\n\tAVG: %.2f\n\n", s_com.max, s_com.min, s_com.avg);
-    printf("------------------------------------------------------------------------\n");
+    printf("------------------------------------------------------------------------\n\n");
     printf(" History: \n\n");
     printf("\tMAX: %.2f\n\tMIN: %.2f\n\tAVG: %.2f\n\n", s_his.max, s_his.min, s_his.avg);
     printf("------------------------------------------------------------------------\n\n");
