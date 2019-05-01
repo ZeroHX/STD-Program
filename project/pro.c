@@ -247,8 +247,7 @@ void regis(){
 
     }
     else{
-        printf("\nConfirm Failed\n");
-        system("cls");
+        printf("\nConfirm Failed\n\n");
         confirm();
     }
 
@@ -281,7 +280,7 @@ void regis(){
                 mainScreen();
                 break;
             case 2:
-                regis();
+                mainScreen();
                 break;
             default:
                 printf("**  Invalid Choice  **\n");
