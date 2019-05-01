@@ -172,16 +172,16 @@ void regis(){
         printf("\t    ====================================================\n");
         printf("\t\t  Please Enter Your Information Correctly\n\n");
         /* NAME-LASTNAME */
-        printf("Name: ");
+        printf("\t\t\tName: ");
         scanf("%s",&rec1.name);
-        printf("LastName: ");
+        printf("\t\t\tLastName: ");
         scanf("%s",&rec1.last);
 
         /* CAREER [teacher or student] */
         int choice;
-        printf("Career      1: Teacher\n");
-        printf("            2: Student\n\n");
-        printf("Choose your choice![num]: ");
+        printf("\n\t\tCareer      1: Teacher\n");
+        printf("\t\t            2: Student\n\n");
+        printf("\t\tChoose your choice![num]: ");
         scanf("%d",&choice);
         switch(choice){
             case 1:
@@ -191,18 +191,18 @@ void regis(){
                 strcpy(rec1.career, "Student");
                 break;
             default:
-                printf("**  Invalid Career  **");
-                printf("          Press any key to continue...");
+                printf("\t\t**  Invalid Career  **");
+                printf("\t\t          Press any key to continue...");
                 getch();
                 regis();
         }
 
         /* USERNAME */
-        printf("Username: ");
+        printf("\n\t\t\tUsername: ");
         scanf("%s",&rec1.user);
 
         /* PASSWORD */
-        printf("Password: ");
+        printf("\t\t\tPassword: ");
         int i = 0;
         while(1){
             char ch = getch();  //Get input from Keyboard (KEYCODE)
@@ -222,7 +222,8 @@ void regis(){
             }
         }
         //Confirm Password
-        printf("\nPlease Confirm Password: ");
+        printf("\n\t\t\tPlease Confirm Password: ");
+        
         int j = 0;
         while(1){
             char hc = getch();  //Get input from Keyboard (KEYCODE)
@@ -243,26 +244,26 @@ void regis(){
         }
     //Check Password & Confirm
     if(strcmp(rec1.pass ,rec1.con) == 0){
-        printf("\nConfirm Password Correct\n");
+        printf("\n\n\t\tConfirm Password Correct\n");
 
     }
     else{
-        printf("\nConfirm Failed\n");
+        printf("\n\t\tConfirm Failed\n");
         system("cls");
         confirm();
     }
 
-        printf("\n\n------------------------------------------\n");
-        printf("Name: %s %s\n",rec1.name,rec1.last);
-        printf("Career: %s\n", rec1.career);
-        printf("Username: %s\n",rec1.user);
-        printf("Password: ");
+        printf("\n\n\t\t------------------------------------------\n");
+        printf("\t\tName: %s %s\n",rec1.name,rec1.last);
+        printf("\t\tCareer: %s\n", rec1.career);
+        printf("\t\tUsername: %s\n",rec1.user);
+        printf("\t\tPassword: ");
         for(int i=0; i<strlen(rec1.pass);i++){
             printf("*");
         }
         printf("\n");
-        printf("------------------------------------------\n");
-        printf("Do you want to create this account? (1: Yes/2: No): ");
+        printf("\t\t------------------------------------------\n");
+        printf("\t\tDo you want to create this account? (1: Yes/2: No): ");
         scanf("%d",& yn);
         switch(yn){
             case 1:
@@ -274,8 +275,8 @@ void regis(){
                 rec1.his = 0;
                 fprintf(fp,"%s %s %s %s %s %f %f %f %f %f\n",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.career,rec1.eng, rec1.math, rec1.sci, rec1.com, rec1.his);
                 fclose(fp);
-                printf("Create Account Succesful!!\n\n\n");
-                printf("Press any key to Main-Menu\n");
+                printf("\n\t\tCreate Account Succesful!!\n\n\n");
+                printf("\t\tPress any key to Main-Menu\n");
                 getch();
                 system("cls");
                 mainScreen();
@@ -292,8 +293,8 @@ void regis(){
 }
 
 void confirm(){
-    printf("Please Enter Password Again\n");
-    printf("Password: ");
+    printf("\n\t\tPlease Enter Password Again\n");
+    printf("\n\t\tPassword: ");
         int i = 0;
         while(1){
             char ch = getch();  //Get input from Keyboard (KEYCODE)
@@ -313,7 +314,7 @@ void confirm(){
             }
         }
         //Confirm Password
-        printf("\nPlease Confirm Password: ");
+        printf("\n\t\tPlease Confirm Password: ");
         int j = 0;
         while(1){
             char hc = getch();  //Get input from Keyboard (KEYCODE)
@@ -334,7 +335,7 @@ void confirm(){
         }
     //Check Password & Confirm
     if(strcmp(rec1.pass ,rec1.con) == 0){
-        printf("\nConfirm Password Correct\n");
+        printf("\n\n\t\tConfirm Password Correct\n");
         // system("cls");
     }
     else{
@@ -372,7 +373,7 @@ void teacher(){
             mainScreen();
             break;
         default:
-            printf("\n**  Invalid Choice  **\n\n\n");
+            printf("\n\t\t**  Invalid Choice  **\n\n\n");
             printf("Press any key to continue...\n");
             getch();
             system("cls");
@@ -500,8 +501,8 @@ void viewAll(){ //Yeah Now, you can see all the students score
 /* This is Student Part */
 void student(){
     int choice;
-    printf("\t\t\tHello %s You are %s\n", sign.name, sign.career);
-    printf("\t\t    ----------------------------------\n");
+    printf("\n\n\t    Hello %s You are %s\n", sign.name, sign.career);
+    printf("\t\t    -------------------------------------\n");
     printf("\t\t\t  1: View your score\n");
     printf("\t\t\t  2: Exit\n\n");
     printf("\t\t\tChoose your choice: ");
@@ -535,7 +536,7 @@ void viewScore(){
     total += sign.eng + sign.math + sign.sci + sign.com + sign.his;
     system("cls");
     printf("================================ My Score ================================\n\n");
-    printf("\t\t\t     Name: %s %s\n\n", sign.name, sign.last);
+    printf("\t\t\tName: %s %s\n\n", sign.name, sign.last);
     printf("\t\t\t ________________________\n\n");
     printf("\t\t\t +  English     : %.2f  +\n", sign.eng);
     printf("\t\t\t +  Mathematics : %.2f  +\n", sign.math);
