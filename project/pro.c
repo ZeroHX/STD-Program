@@ -162,7 +162,15 @@ void regis(){
     if(fp == NULL) printf("Error! Check your file! (../data/record.txt)");
     else{
         system("cls");
-        printf("Please Enter Your Information Correctly\n");
+        printf("\t   ====================================================\n");
+        printf("\t\t____________   ____________   __________\n");
+        printf("\t\t|   _________| |____    ____| |  _______ \\\n");
+        printf("\t\t|  |_________       |  |      | |       | |\n");
+        printf("\t\t|_________   |      |  |      | |       | |\n");
+        printf("\t\t ________|   |      |  |      | |_______| |\n");
+        printf("\t\t|____________|      |__|      |___________|\n\n");
+        printf("\t    ====================================================\n");
+        printf("\t\t  Please Enter Your Information Correctly\n\n");
         /* NAME-LASTNAME */
         printf("Name: ");
         scanf("%s",&rec1.name);
@@ -184,7 +192,7 @@ void regis(){
                 break;
             default:
                 printf("**  Invalid Career  **");
-                printf("          Press any key to continue!");
+                printf("          Press any key to continue...");
                 getch();
                 regis();
         }
@@ -465,7 +473,7 @@ void searchID(){
     else{
         fclose(fp);
         printf("\n\nStudent ID not found!!\n");
-        printf("Press any key to continue!");
+        printf("Press any key to continue...");
         getch();
         system("cls");
         teacher();
@@ -483,7 +491,7 @@ void viewAll(){ //Yeah Now, you can see all the students score
         }
     }
     fclose(fp);
-    printf("\n\n                        Press any key to continue!");
+    printf("\n\n                        Press any key to continue...");
     getch();
     system("cls");
     teacher();
@@ -526,14 +534,16 @@ void viewScore(){
     float total = 0;
     total += sign.eng + sign.math + sign.sci + sign.com + sign.his;
     system("cls");
-    printf("============================== My Score ==============================\n\n");
-    printf("Name: %s %s\n\n", sign.name, sign.last);
-    printf("English     : %.2f\n", sign.eng);
-    printf("Mathematics : %.2f\n", sign.math);
-    printf("Science     : %.2f\n", sign.sci);
-    printf("Computer    : %.2f\n", sign.com);
-    printf("History     : %.2f\n\n", sign.his);
-    printf("Average       : %.2f\n\n\n", total/5);
+    printf("================================ My Score ================================\n\n");
+    printf("\t\t\t     Name: %s %s\n\n", sign.name, sign.last);
+    printf("\t\t\t ________________________\n\n");
+    printf("\t\t\t +  English     : %.2f  +\n", sign.eng);
+    printf("\t\t\t +  Mathematics : %.2f  +\n", sign.math);
+    printf("\t\t\t +  Science     : %.2f  +\n", sign.sci);
+    printf("\t\t\t +  Computer    : %.2f  +\n", sign.com);
+    printf("\t\t\t +  History     : %.2f  +\n", sign.his);
+    printf("\t\t\t ________________________\n\n");
+    printf("\t\t\t  Average       : %.2f\n\n\n", total/5);
 
     FILE *fp;
     fp = fopen("../data/record.txt", "r");
@@ -579,25 +589,25 @@ void viewScore(){
 
 
     printf("============================== Statistics ==============================\n\n");
-    printf(" English: \n");
+    printf(" English: \n\n");
     printf("\tMAX: %.2f\n\tMIN: %.2f\n\tAVG: %.2f\n\n", s_eng.max, s_eng.min, s_eng.avg);
     printf("------------------------------------------------------------------------\n");
-    printf(" Mathematics: \n");
+    printf(" Mathematics: \n\n");
     printf("\tMAX: %.2f\n\tMIN: %.2f\n\tAVG: %.2f\n\n", s_math.max, s_math.min, s_math.avg);
     printf("------------------------------------------------------------------------\n");
-    printf(" Science: \n");
+    printf(" Science: \n\n");
     printf("\tMAX: %.2f\n\tMIN: %.2f\n\tAVG: %.2f\n\n", s_sci.max, s_sci.min, s_sci.avg);
     printf("------------------------------------------------------------------------\n");
-    printf(" Computer: \n");
+    printf(" Computer: \n\n");
     printf("\tMAX: %.2f\n\tMIN: %.2f\n\tAVG: %.2f\n\n", s_com.max, s_com.min, s_com.avg);
     printf("------------------------------------------------------------------------\n");
-    printf(" History: \n");
+    printf(" History: \n\n");
     printf("\tMAX: %.2f\n\tMIN: %.2f\n\tAVG: %.2f\n\n", s_his.max, s_his.min, s_his.avg);
     printf("------------------------------------------------------------------------\n\n");
     printf("[Overall] MAX: %.2f    MIN: %.2f   AVG: %.2f\n", s_all.max, s_all.min, s_all.avg);
 
     fclose(fp);
-    printf("\n\n                        Press any key to continue!");
+    printf("\n\n                        Press any key to continue...");
     getch();
     system("cls");
     student();
@@ -655,25 +665,25 @@ void stat(){
     s_all.avg /= count;
 
     printf("============================== Statistics ==============================\n\n");
-    printf(" English: \n");
+    printf(" English: \n\n");
     printf("\tMAX: %.2f\n\tMIN: %.2f\n\tAVG: %.2f\n\n", s_eng.max, s_eng.min, s_eng.avg);
     printf("------------------------------------------------------------------------\n");
-    printf(" Mathematics: \n");
+    printf(" Mathematics: \n\n");
     printf("\tMAX: %.2f\n\tMIN: %.2f\n\tAVG: %.2f\n\n", s_math.max, s_math.min, s_math.avg);
     printf("------------------------------------------------------------------------\n");
-    printf(" Science: \n");
+    printf(" Science: \n\n");
     printf("\tMAX: %.2f\n\tMIN: %.2f\n\tAVG: %.2f\n\n", s_sci.max, s_sci.min, s_sci.avg);
     printf("------------------------------------------------------------------------\n");
-    printf(" Computer: \n");
+    printf(" Computer: \n\n");
     printf("\tMAX: %.2f\n\tMIN: %.2f\n\tAVG: %.2f\n\n", s_com.max, s_com.min, s_com.avg);
     printf("------------------------------------------------------------------------\n");
-    printf(" History: \n");
+    printf(" History: \n\n");
     printf("\tMAX: %.2f\n\tMIN: %.2f\n\tAVG: %.2f\n\n", s_his.max, s_his.min, s_his.avg);
     printf("------------------------------------------------------------------------\n\n");
     printf("[Overall] MAX: %.2f    MIN: %.2f   AVG: %.2f\n", s_all.max, s_all.min, s_all.avg);
 
     fclose(fp);
-    printf("\n\n                        Press any key to continue!");
+    printf("\n\n                        Press any key to continue...");
     getch();
     system("cls");
     teacher();
