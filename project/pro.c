@@ -391,14 +391,14 @@ void searchID(){
     }
     if(status == 1){
         system("cls");
-        printf("Student Profile-------------------------------------------\n");
-        printf("    Name: %s  %s\n",rec1.name, rec1.last);
-        printf("    GPA: English     : %.2f\n", rec1.eng);
-        printf("         Mathematics : %.2f\n", rec1.math);
-        printf("         Science     : %.2f\n", rec1.sci);
-        printf("         Computer    : %.2f\n", rec1.com);
-        printf("         History     : %.2f\n", rec1.his);
-        printf("----------------------------------------------------------\n\n\n");
+        printf("\t--------------------Student Profile-----------------------\n\n");
+        printf("\t\t    Name: %s  %s\n\n",rec1.name, rec1.last);
+        printf("\t\t    GPA: English     : %.2f\n", rec1.eng);
+        printf("\t\t         Mathematics : %.2f\n", rec1.math);
+        printf("\t\t         Science     : %.2f\n", rec1.sci);
+        printf("\t\t         Computer    : %.2f\n", rec1.com);
+        printf("\t\t         History     : %.2f\n", rec1.his);
+        printf("\n\t----------------------------------------------------------\n\n\n");
         fclose(fp);
         int choice;
         printf("1: Edit score\n");
@@ -478,7 +478,7 @@ void viewAll(){ //Yeah Now, you can see all the students score
     fp = fopen("../data/record.txt", "r");
     while(fscanf(fp,"%s %s %s %s %s %f %f %f %f %f",rec1.name,rec1.last,rec1.user,rec1.pass,rec1.career,&rec1.eng, &rec1.math, &rec1.sci, &rec1.com, &rec1.his) != EOF){ //It will scan in ../data/record.txt until it can not find the ../data.
         if(!strcmp(rec1.career, "Student")){ //check logic is 1 print the score of that student
-            printf("ID: %s   Name: %s %s\nScore:\n \tEnglish: %.2f\n \tMathematics: %.2f\n \tScience: %.2f\n \tComputer: %.2f\n \tHistory: %.2f\n",rec1.user,rec1.name,rec1.last,rec1.eng, rec1.math, rec1.sci, rec1.com, rec1.his);
+            printf("\t\tID: %s     Name: %s %s\n\t\tScore:\n \t\t\tEnglish: %.2f\n \t\t\tMathematics: %.2f\n \t\t\tScience: %.2f\n \t\t\tComputer: %.2f\n \t\t\tHistory: %.2f\n",rec1.user,rec1.name,rec1.last,rec1.eng, rec1.math, rec1.sci, rec1.com, rec1.his);
             printf("------------------------------------------------------------------------\n");
         }
     }
